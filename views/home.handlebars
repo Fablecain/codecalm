@@ -1,3 +1,9 @@
-<h1>Welcome to CodeCalm</h1>
-<p>This is the home page.</p>
+<h1>Share Your Thoughts</h1>
+<form action="/comments/add" method="POST">
+    <textarea name="text" required></textarea>
+    <button type="submit">Post Comment</button>
+</form>
 
+{{#each comments}}
+    <div>{{this.text}}</div>
+{{/each}}
