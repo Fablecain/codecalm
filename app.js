@@ -1,29 +1,33 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Set up Handlebars middleware
-const hbs = exphbs.create({ defaultLayout: 'main' });
-app.engine('handlebars', hbs.engine);
+// Setting up Handlebars
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
-// Other middleware setup (if any)
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// Body Parser middleware to parse request bodies
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-// Routes and route handlers
-app.get('/register', (req, res) => {
-    res.render('register');
+// Static folder
+app.use(express.static('public'));
+
+// Sessions and Cookies
+app.use(cookieParser());
+app.use(session({
+  secret: 'yourSecret',
+  resave: false,
+  saveUninitialized: true,
+}));
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
-
-app.get('/login', (req, res) => {
-    res.render('login');
-});
-
-app.get('/', (req, res) => {
-    res.render('home');
-});
-
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
