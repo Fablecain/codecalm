@@ -1,5 +1,44 @@
-const User = require('../models').User; // Adjust based on your User model import
+const express = require('express');
+const session = require('express-session');
+const { engine } = require('express-handlebars');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const bcrypt = require('bcrypt');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+const db = require('../models');
+
+app.engine('handlebars', engine({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use(session({
+    secret: 'secret',
+    store: new SequelizeStore({
+        db: db.sequelize
+    }),
+    resave: false,
+    saveUninitialized: false,
+}));
+
+app.use(express.static('public'));
+
+app.get('/', (req, res) => res.render('home'));
+
+const userRoutes = require('userRoutes.js');
+const questionRoutes = require('questionRoutes.js');
+
+app.use('/users', userRoutes);
+app.use('/questions', questionRoutes);
+
+db.sequelize.sync().then(() => {
+    app.listen(PORT, () => console.log(`Server started on http://localhost:${PORT}`));
+}).catch(err => console.error('Unable to connect to the database:', err));
+
+const User = require('../models').User;
 
 exports.registerForm = (req, res) => {
     res.render('register'); // Render the registration form
@@ -70,5 +109,3 @@ exports.login = async (req, res) => {
         res.status(400).send(error.message);
     }
 };
-
-

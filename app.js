@@ -1,29 +1,65 @@
+// app.js
+
 const express = require('express');
-const exphbs = require('express-handlebars');
+const session = require('express-session');
+const { engine } = require('express-handlebars');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const { v4: uuidv4 } = require('uuid'); // Import UUID
+const db = require('./models');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Set up Handlebars middleware
-const hbs = exphbs.create({ defaultLayout: 'main' });
-app.engine('handlebars', hbs.engine);
+// Configure Handlebars
+app.engine('handlebars', engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
-// Other middleware setup (if any)
+// Body parser middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Routes and route handlers
-app.get('/register', (req, res) => {
-    res.render('register');
+// Setup session middleware with Sequelize store
+app.use(session({
+    secret: 'secret', // Use a secure, unique secret in production
+    store: new SequelizeStore({
+        db: db.sequelize
+    }),
+    resave: false,
+    saveUninitialized: false,
+}));
+
+// Static folder (for CSS, JavaScript, and images)
+app.use(express.static('public'));
+
+// Routes
+app.get('/', (req, res) => res.render('home'));
+
+app.get('/questions', (req, res) => {
+    // Render page for viewing questions
+    res.render('questions');
+});
+
+app.post('/questions', (req, res) => {
+    // Handle submission of new questions
+    res.redirect('/questions');
 });
 
 app.get('/login', (req, res) => {
+    // Render login form
     res.render('login');
 });
 
-app.get('/', (req, res) => {
-    res.render('home');
+app.post('/login', (req, res) => {
+    // Handle login
+    res.redirect('/dashboard');
 });
 
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.get('/dashboard', (req, res) => {
+    // Render user dashboard
+    res.render('dashboard');
+});
+
+// Start the server after syncing the database
+db.sequelize.sync().then(() => {
+    app.listen(PORT, () => console.log(`Server started on http://localhost:${PORT}`));
+}).catch(err => console.error('Unable to connect to the database:', err));
