@@ -5,10 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeCalm</title>
-    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="reset.csss">
+    <link rel="stylesheet" href="style.css"> <!-- Add this line -->
 </head>
 
 <body>
+    <header>
+        <h1>Anonymous Mental Health Questions</h1>
+    </header>
+    <main>
+        <div class="questions-container">
+            {{#each questions}}
+            <div class="question">
+                <h2>{{title}}</h2>
+                <p>{{body}}</p>
+            </div>
+            {{/each}}
+        </div>
+    </main>
+    
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container">

@@ -1,64 +1,95 @@
 /* Reset CSS */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Use a CSS reset to normalize browser styles */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box; /* Include this line to ensure padding and border are included in the element's total width and height */
 }
 
-/* Body Styling */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
-}
-
-/* Navbar Styling */
+/* Navbar */
 .navbar {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
+  background-color: #1da1f2;
+  color: #fff;
+  padding: 1rem;
+  text-align: center; /* Center the content */
 }
 
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 1rem;
+  font-weight: bold;
 }
 
-.brand {
-    font-size: 1.5rem;
+.navbar a:hover {
+  text-decoration: underline;
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5; /* Updated background color */
+  margin: 0;
+  padding: 0;
 }
 
-.nav-links li {
-    margin-right: 1rem;
+/* Header */
+header {
+  background-color: #1da1f2;
+  color: white;
+  padding: 20px;
+  text-align: center;
 }
 
-.nav-links li a {
-    color: #fff;
-    text-decoration: none;
+/* Main Content */
+.main {
+  padding: 20px;
 }
 
-/* Main Content Styling */
-.container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+/* Questions Container */
+.questions-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
 }
 
-.header {
-    text-align: center;
-    margin-bottom: 2rem;
+/* Question Card */
+.question {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
-/* Footer Styling */
+.question h2 {
+  margin-top: 0;
+}
+
+.question p {
+  margin-bottom: 0;
+}
+
+/* Footer */
 .footer {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
 }
