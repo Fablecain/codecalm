@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,3 +55,14 @@
 </body>
 
 </html>
+=======
+<h1>Share Your Thoughts</h1>
+<form action="/comments/add" method="POST">
+    <textarea name="text" required></textarea>
+    <button type="submit">Post Comment</button>
+</form>
+
+{{#each comments}}
+    <div>{{this.text}}</div>
+{{/each}}
+>>>>>>> 497d6218480468183a38b0ba16113f080c1edc0d
