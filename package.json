@@ -1,10 +1,10 @@
 {
   "name": "codecalm",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "CodeCalm is a platform designed to provide a safe and anonymous space for developers to express their thoughts, share experiences, and seek support regarding mental health challenges in the tech industry.",
+  "main": "server.js", 
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js", 
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "echo \"Add your build commands here\""
   },
@@ -12,14 +12,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^10.4.17",
     "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
     "connect-session-sequelize": "^7.1.7",
-    "dotenv": "^16.4.1",
+    "dotenv": "^16.4.4",
     "express": "^4.18.2",
-    "express-handlebars": "7.1.2",
+    "express-handlebars": "^7.1.2",
     "express-session": "^1.18.0",
+    "helmet": "^7.1.0",
     "mysql2": "^3.9.1",
-    "sequelize": "^6.36.0",
+    "postcss": "^8.4.35",
+    "sequelize": "^6.37.1",
+    "tailwindcss": "^3.4.1",
     "uuid": "^9.0.1"
   }
 }
+

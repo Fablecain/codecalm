@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeCalm</title>
-    <link rel="stylesheet" href="reset.csss">
-    <link rel="stylesheet" href="style.css"> <!-- Add this line -->
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="public\stylesheets\style.css"> <!-- Add this line -->
 </head>
 
 <body>
@@ -31,8 +30,8 @@
             <div class="brand">CodeCalm</div>
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
-                <li><a href="/questions">Questions</a></li>
-                <li><a href="/login">Login</a></li>
+                <li><a href="/comments">Comments</a></li> <!-- Updated to "/comments" -->
+                <li><a href="/users/login">Login</a></li> <!-- Changed from "/login" to "/users/login" -->
                 <li><a href="/dashboard">Dashboard</a></li>
             </ul>
         </div>
@@ -42,7 +41,7 @@
     <div class="container">
         <header class="header">
             <h1>Welcome to CodeCalm</h1>
-            <p>This is the home page.</p>
+            <p>Your Mental Health Forum</p>
         </header>
     </div>
 
@@ -52,17 +51,16 @@
             &copy; 2024 CodeCalm. All rights reserved.
         </div>
     </footer>
+
+    <h1>Share Your Thoughts</h1> <!-- Moved this part to the bottom -->
+    <form action="/comments/add" method="POST">
+        <textarea name="text" required></textarea>
+        <button type="submit">Post Comment</button>
+    </form>
+
+    {{#each comments}}
+        <div>{{this.text}}</div>
+    {{/each}}
 </body>
 
 </html>
-=======
-<h1>Share Your Thoughts</h1>
-<form action="/comments/add" method="POST">
-    <textarea name="text" required></textarea>
-    <button type="submit">Post Comment</button>
-</form>
-
-{{#each comments}}
-    <div>{{this.text}}</div>
-{{/each}}
->>>>>>> 497d6218480468183a38b0ba16113f080c1edc0d

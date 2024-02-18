@@ -1,43 +1,53 @@
-require('dotenv').config(); // Load environment variables from .env file at the very start
+require('dotenv').config(); // Load environment variables
 
 const express = require('express');
-const { engine } = require('express-handlebars');
-const bodyParser = require('body-parser');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const commentRoutes = require('./routes/commentRoutes');
-const sequelize = require('./config/database');
+const { engine } = require('express-handlebars');
+const bodyParser = require('body-parser');
+const helmet = require('helmet');
+const path = require('path');
+
+// Assuming db is set up correctly in ./models/index.js
+const db = require('./models');
+const sequelize = db.sequelize; // Adjust if your sequelize connection file has a different path
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Setup Handlebars as the view engine
 app.engine('handlebars', engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
-// Middleware for parsing request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(helmet());
 
-// Serve static files
-app.use(express.static('public'));
-
-// Session middleware setup with secret pulled from environment variables
 app.use(session({
-  secret: process.env.SESSION_SECRET, // Use the SESSION_SECRET variable from .env file
-  resave: false,
-  saveUninitialized: true,
-  store: new SequelizeStore({
-    db: sequelize,
-  }),
+    secret: process.env.SESSION_SECRET,
+    store: new SequelizeStore({ db: sequelize }),
+    resave: false,
+    saveUninitialized: true, // or false, based on your needs
+    cookie: { secure: 'auto' }, // secure: true in production
 }));
 
-// Routes
-app.use('/', commentRoutes);
+// Define routes
+// Homepage route
+app.get('/', async (req, res) => {
+    try {
+        const comments = await db.Comment.findAll();
+        res.render('home', {
+            comments: comments.map(comment => comment.toJSON())
+        });
+    } catch (error) {
+        console.error('Failed to load homepage:', error);
+        res.status(500).render('error', { error: 'Error loading the homepage.' });
+    }
+});
 
-// Sync Sequelize models to the database, then start the server
-sequelize.sync().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
-}).catch(err => console.log('Error starting the server:', err));
+// Additional routes can be defined here
+
+// Start the server
+db.sequelize.sync().then(() => {
+    app.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}`));
+}).catch(err => console.error('Unable to connect to the database:', err));

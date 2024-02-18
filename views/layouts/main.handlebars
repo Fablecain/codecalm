@@ -1,12 +1,44 @@
+<!-- In your main layout file (e.g., main.handlebars) -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>CodeCalm</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Application Title</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Add your custom styles here -->
+    <style>
+        /* Custom styles */
+        /* Example: Make the background gradient */
+        body {
+            background: linear-gradient(135deg, #ff7eb6 0%, #7361ff 100%);
+        }
+
+        /* Example: Style for a vibrant button */
+        .btn {
+            background-color: #ffea00;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ffd500;
+        }
+    </style>
 </head>
-<body>
+
+<body class="font-sans antialiased">
+    <!-- Your HTML content here -->
     {{{body}}}
 </body>
+
 </html>
+
 
 

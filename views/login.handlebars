@@ -1,6 +1,35 @@
-<h2>Login</h2>
-<form action="/users/login" method="POST">
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <input type="submit" value="Login">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Add your custom styles here -->
+    <style>
+        /* Custom styles */
+        /* Example: Make the background gradient */
+        body {
+            background: linear-gradient(135deg, #ff7eb6 0%, #7361ff 100%);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <div class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-xl">
+        <h2 class="text-3xl font-semibold text-center mb-4">Login</h2>
+        <form action="views\login.handlebars" method="POST" class="space-y-4">
+            <!-- Email Field -->
+            <div>
+                <input type="email" name="email" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-200" placeholder="Email" required>
+            </div>
+            <!-- Password Field -->
+            <div>
+                <input type="password" name="password" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-200" placeholder="Password" required>
+            </div>
+            <!-- Login Button -->
+            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-200">Login</button>
+        </form>
+    </div>
+</body>
+</html>

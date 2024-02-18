@@ -1,0 +1,24 @@
+<!-- comments.handlebars -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments</title>
+</head>
+<body>
+    <header>
+        <h1>Previous Comments</h1>
+    </header>
+    <main>
+        <div class="comments-container">
+            {{#each comments}}
+                <div class="comment">
+                    <p>{{this.text}}</p>
+                </div>
+            {{/each}}
+        </div>
+    </main>
+</body>
+</html>

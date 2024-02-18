@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Global Styles */
 body {
     font-family: Arial, sans-serif;
@@ -16,9 +20,6 @@ header {
     background-color: #1da1f2;
     color: #fff;
     padding: 20px;
-}
-
-header h1 {
 }
 
 /* Navbar Styles */
@@ -96,3 +97,4 @@ header h1 {
     color: #fff;
     text-decoration: none;
 }
+
