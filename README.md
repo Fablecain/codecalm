@@ -46,6 +46,8 @@ http://localhost:3000
 ## License
 This project is licensed under the MIT License.
 
+## Credit
+This application was built by Isaiah LeDuc (FableCain on Github)
 
 
 
