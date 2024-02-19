@@ -2,13 +2,11 @@
   "name": "codecalm",
   "version": "1.0.0",
   "description": "CodeCalm is a platform designed to provide a safe and anonymous space for developers to express their thoughts, share experiences, and seek support regarding mental health challenges in the tech industry.",
-  "main": "server.js",
+  "main": "server.js", 
   "scripts": {
-    "start": "node server.js",
+    "start": "node server.js", 
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "sequelize db:migrate",
-    "seed": "sequelize db:seed:all",
-    "postinstall": "npm run migrate"
+    "build": "echo \"Add your build commands here\""
   },
   "keywords": [],
   "author": "",
@@ -26,13 +24,8 @@
     "mysql2": "^3.9.1",
     "postcss": "^8.4.35",
     "sequelize": "^6.37.1",
-    "sequelize-cli": "^6.2.0", 
     "tailwindcss": "^3.4.1",
     "uuid": "^9.0.1"
-  },
-  "engines": {
-    "node": "14.x" 
   }
 }
-
 
