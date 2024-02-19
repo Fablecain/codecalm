@@ -1,66 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeCalm</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="public\stylesheets\style.css"> <!-- Add this line -->
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/stylesheets/style.css"> <!-- Ensure correct path -->
 </head>
-
 <body>
     <header>
-        <h1>Anonymous Mental Health Questions</h1>
+        <h1>CodeCalm</h1>
     </header>
-    <main>
-        <div class="questions-container">
-            {{#each questions}}
-            <div class="question">
-                <h2>{{title}}</h2>
-                <p>{{body}}</p>
+    <div class="container flex">
+        <main>
+            <div class="questions-container">
+                {{#each comments}}
+                <div class="comment-box"> <!-- Use comment-box for styling -->
+                    <h2>{{this.author}} says:</h2> <!-- Placeholder, adjust as needed -->
+                    <p>{{this.text}}</p>
+                </div>
+                {{/each}}
             </div>
-            {{/each}}
-        </div>
-    </main>
-    
+        </main>
+        <aside class="sidebar">
+            <h2>Mental Health Questions To Get You Thinking</h2>
+            <ul>
+                <li>How are you really feeling today?</li>
+                <li>What's something small that made you smile recently?</li>
+                <li>Do you feel you're able to manage your stress effectively?</li>
+                <li>How well are you sleeping these days?</li>
+                <li>Have you talked to someone about your feelings lately?</li>
+                <li>What's one thing you wish you could change right now?</li>
+                <li>How much time do you dedicate to self-care weekly?</li>
+                <li>What are your thoughts on seeking professional help for mental health?</li>
+                <li>How do you usually cope with feelings of anxiety or depression?</li>
+                <li>What's one positive affirmation you can tell yourself today?</li>
+            </ul>
+        </aside>
+    </div>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container">
-            <div class="brand">CodeCalm</div>
+            
             <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/comments">Comments</a></li> <!-- Updated to "/comments" -->
-                <li><a href="/users/login">Login</a></li> <!-- Changed from "/login" to "/users/login" -->
-                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/comments">Comments</a></li>
             </ul>
         </div>
     </nav>
-
-    <!-- Main Content -->
-    <div class="container">
+    <div class="container text-center">
         <header class="header">
             <h1>Welcome to CodeCalm</h1>
-            <p>Your Mental Health Forum</p>
+            <p>Your Mental Health Diary</p>
         </header>
+        <h1>Share Your Thoughts</h1>
+        <form action="/comments/add" method="POST">
+            <textarea name="text" required></textarea>
+            <button type="submit" class="btn">Post Comment</button>
+        </form>
     </div>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             &copy; 2024 CodeCalm. All rights reserved.
         </div>
     </footer>
-
-    <h1>Share Your Thoughts</h1> <!-- Moved this part to the bottom -->
-    <form action="/comments/add" method="POST">
-        <textarea name="text" required></textarea>
-        <button type="submit">Post Comment</button>
-    </form>
-
-    {{#each comments}}
-        <div>{{this.text}}</div>
-    {{/each}}
 </body>
-
 </html>

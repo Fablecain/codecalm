@@ -1,100 +1,154 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-/* Global Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
+/* Custom Variables */
+:root {
+  --calm-blue: #1da1f2;
+  --calm-dark: var(--calm-blue);
+  --calm-light: #f0f2f5;
+  --comment-background: #ffffff;
+  --comment-border: #dddddd;
+  --comment-text: #666666;
+  --header-font-size: 2.0rem; /* Size for CodeCalm */
+  --subheader-font-size: 2.5rem; /* Size for Anonymous Mental Health Forum */
+  --nav-link-font-size: 1.8rem; /* Size for navigation links */
+  --main-title-font-size: 7rem; /* Size for Welcome to CodeCalm */
+  --sub-title-font-size: 1.5rem; /* Size for Your Mental Health Forum */
+  --content-font-size: 2.5rem; /* Size for regular content */
+  --footer-font-size: 1rem; /* Size for footer content */
 }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
+body, html {
+  font-family: 'cursive';
+  background-color: var(--calm-light);
+  color: var(--calm-dark);
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-/* Header Styles */
-header {
-    background-color: #1da1f2;
-    color: #fff;
-    padding: 20px;
+/* Full Page Components */
+.container, .navbar, .footer {
+  width: 18%;
+  max-width: 100%;
+  border-radius: 50rem;
 }
 
 /* Navbar Styles */
 .navbar {
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: var(--calm-blue);
+  color: #ffffff;
+  padding: 3rem;
+  text-align: left;
 }
 
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 2rem;
+  font-size: var(--nav-link-font-size);
+  font-weight: bolder;
 }
 
-.navbar .brand {
-    font-size: 1.5rem;
-    font-weight: bold;
+/* Comment Box Styles */
+.comment-box {
+  background-color: var(--comment-background);
+  border: 1px thick var(--comment-border);
+  border-radius: 0.5rem;
+  box-shadow: 6 8px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  font-size: var(--content-font-size);
 }
 
-.nav-links {
-    list-style-type: none;
+/* Button Styles */
+.btn {
+  background-color: var(--calm-blue);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5rem;
+  font-size: var(--content-font-size);
+  cursor: cell;
+  transition: background-color 1.0s ease-out;
+  margin-top:0.1rem;
+  font-family:'Times New Roman', Times, serif fantasy;
+}
+
+.btn:hover {
+  background-color: darken(var(--calm-blue), 40%);
+}
+
+/* Header Styles */
+header {
+    background-color: var(--calm-blue);
+    color: whitesmoke;
+    padding: 0.2rem 0;
+    text-align: center;
+    font-weight: bold
+}
+  
+header h1 {
+    font-size: var(--header-font-size);
     margin: 0;
-    padding: 0;
+    padding: 0.1rem 0;
+}
+  
+/* Footer Styles */
+.footer {
+  background-color: var(--calm-dark);
+  color: #ffffff;
+  text-align: var(--footer-font-size);
+  padding: 1rem;
+  margin-top: 0.2rem;
 }
 
-.nav-links li {
-    display: inline;
-    margin-right: 20px;
+.container {
+    display: contents;
+    justify-content: space-between;
+    padding: 10px;
 }
 
-.nav-links li:last-child {
-    margin-right: 0;
+main {
+    flex: 3;
 }
 
-.nav-links li a {
-    color: #333;
-    text-decoration: none;
+.sidebar {
+    flex: 1;
+    margin-left: 650px;
+    padding: 50px;
+    background-color: transparent;
+    border-radius: 10px;
+   font-family: Trattatello, fantasy;
+   color: #dddddd;
+   font-size: medium;
 }
 
-/* Main Content Styles */
-.questions-container {
-    background-color: #fff;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.question {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-}
-
-.question h2 {
-    font-size: 1.2rem;
+.sidebar h2 {
     margin-bottom: 5px;
 }
 
-.question p {
-    color: #666;
+.sidebar ul {
+    list-style-type: var(--calm-blue);
+    padding: 1px;
 }
 
-/* Footer Styles */
-.footer {
-    background-color: #1da1f2;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    margin-top: 20px;
+.sidebar ul li {
+    margin-bottom: 0px;
 }
 
-.footer a {
-    color: #fff;
-    text-decoration: none;
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: var(--subheader-font-size);
+  }
+  .navbar a, .btn, .comment-box {
+    font-size: var(--content-font-size);
+    padding: 1rem;
+  }
+  .footer {
+    padding: 1rem;
+    margin-top: 6rem;
+  }
 }
-
