@@ -2,9 +2,9 @@
   "name": "codecalm",
   "version": "1.0.0",
   "description": "CodeCalm is a platform designed to provide a safe and anonymous space for developers to express their thoughts, share experiences, and seek support regarding mental health challenges in the tech industry.",
-  "main": "server.js", 
+  "main": "server.js",
   "scripts": {
-    "start": "node server.js", 
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "echo \"Add your build commands here\""
   },
@@ -22,10 +22,10 @@
     "express-session": "^1.18.0",
     "helmet": "^7.1.0",
     "mysql2": "^3.9.1",
+    "pg": "^8.11.3",
     "postcss": "^8.4.35",
     "sequelize": "^6.37.1",
     "tailwindcss": "^3.4.1",
     "uuid": "^9.0.1"
   }
 }
-
