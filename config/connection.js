@@ -1,23 +1,24 @@
 const { Sequelize } = require('sequelize');
-const config = require('./config.js');
+require('dotenv').config();
 
 let sequelize;
 
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], {
+if (process.env.DATABASE_URL) {
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
     protocol: 'postgres',
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false
-      }
-    }
+        rejectUnauthorized: false,
+      },
+    },
   });
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, {
-    host: config.host,
-    dialect: config.dialect
+  // Fallback to local database configuration if DATABASE_URL is not available
+  sequelize = new Sequelize(process.env.DB_DATABASE_DEVELOPMENT, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
+    dialect: 'mysql', // or any other dialect you are using locally
   });
 }
 
