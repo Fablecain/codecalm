@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config(); // Make sure to require dotenv at the top if you're using environment variables stored in a .env file locally
 
 module.exports = {
   development: {
@@ -6,14 +6,16 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE_DEVELOPMENT,
     host: "127.0.0.1",
-    dialect: "mysql", // Or 'postgres', 'sqlite', 'mariadb', 'mssql' depending on your DB
+    dialect: "mysql",
+    // Add any other development-specific settings here
   },
   test: {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE_TEST,
     host: "127.0.0.1",
-    dialect: "mysql", // Or another dialect as per your setup
+    dialect: "mysql",
+    // Add any other test-specific settings here
   },
   production: {
     use_env_variable: 'DATABASE_URL',
@@ -22,8 +24,9 @@ module.exports = {
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false // This is important to avoid SSL errors
+        rejectUnauthorized: false // This helps to avoid SSL errors in certain cases
       }
     }
+    // You can add any other production-specific settings here
   }
 };
