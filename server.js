@@ -5,6 +5,7 @@ const { engine } = require('express-handlebars');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const path = require('path');
+const { Sequelize } = require('sequelize');
 const db = require('./models');
 
 const app = express();
@@ -17,6 +18,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
+
+// Database connection setup
+const sequelize = new Sequelize(process.env.JAWSDB_URL);
 
 // Import routes for comments
 const commentRoutes = require('./routes/comments');
@@ -34,6 +38,10 @@ app.get('/', async (req, res) => {
 });
 
 // Start the server
-db.sequelize.sync().then(() => {
+sequelize.authenticate().then(() => {
+    console.log('Database connection has been established successfully.');
     app.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}`));
-}).catch(err => console.error('Unable to connect to the database:', err));
+}).catch(err => {
+    console.error('Unable to connect to the database:', err);
+});
+
